@@ -17,16 +17,16 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author dappo
+ * @author lucas_iug6uav
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Genero.findAll", query = "SELECT g FROM Genero g"),
-    @NamedQuery(name = "Genero.findFilter", query = "SELECT g FROM Genero g WHERE g.genero like :filtro")
+    @NamedQuery(name = "Classificacao.findAll", query = "SELECT c FROM Classificacao c"),
+    @NamedQuery(name = "Classificacao.findFilter", query = "SELECT c FROM Classificacao c WHERE c.tipoClassificacao like :filtro")
 })
-public class Genero implements Serializable {
+public class Classificacao implements Serializable {
 
-    @OneToMany(mappedBy = "genero")
+    @OneToMany(mappedBy = "classificacao")
     private List<Livro> livros;
 
     private static final long serialVersionUID = 1L;
@@ -34,15 +34,7 @@ public class Genero implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String genero;
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
+    private String tipoClassificacao;
 
     public Long getId() {
         return id;
@@ -62,10 +54,10 @@ public class Genero implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Genero)) {
+        if (!(object instanceof Classificacao)) {
             return false;
         }
-        Genero other = (Genero) object;
+        Classificacao other = (Classificacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -74,7 +66,15 @@ public class Genero implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Genero[ id=" + id + " ]";
+        return "modelo.Classificacao[ id=" + id + " ]";
+    }
+
+    public String getTipoClassificacao() {
+        return tipoClassificacao;
+    }
+
+    public void setTipoClassificacao(String tipoClassificacao) {
+        this.tipoClassificacao = tipoClassificacao;
     }
     
 }
