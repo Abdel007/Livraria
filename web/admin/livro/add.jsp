@@ -19,22 +19,52 @@
             <div class="row">
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
-                        <label>Idade</label>
-                        <input type="number" name="txtIdade" required class="form-control" placeholder="Idade" >
+                        <label>Autor</label>
+                        <select name="txtAutor">
+                        
+                              <c:forEach items="${autor}" var="obj">
+                                <option value="${obj.id}">${obj.nome}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
-                        <label>Cidade</label>
-                        <input type="text" name="txtCidade" required class="form-control" placeholder="Cidade" >
+                        <label>Genero</label>
+                        <select name="txtGenero">
+                        
+                              <c:forEach items="${genero}" var="obj">
+                                <option value="${obj.id}">${obj.genero}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class="form-group-file">
-                        <label for="file">Foto</label>
-                        <input type="file" name="txtFoto" required class="form-control form-control-file">
+            </div>
+            <div class="row">
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Editora</label>
+                        <select name="txtEditora">
+                        
+                              <c:forEach items="${editora}" var="obj">
+                                <option value="${obj.id}">${obj.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Classificação</label>
+                        <select name="txtEditora">
+                        
+                              <c:forEach items="${classificacao}" var="obj">
+                                <option value="${obj.id}">${obj.tipoClassificacao}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
             </div>

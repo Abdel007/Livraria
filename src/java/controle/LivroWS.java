@@ -6,6 +6,10 @@
 package controle;
 
 import dao.AutorDAO;
+import dao.LivroDAO;
+import dao.ClassificacaoDAO;
+import dao.EditoraDAO;
+import dao.GeneroDAO;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,15 +21,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Autor;
+import modelo.Livro;
+import modelo.Classificacao;
+import modelo.Editora;
+import modelo.Genero;
 
 /**
  *
  * @author dappo
  */
-@WebServlet(name = "AutorWS", urlPatterns = {"/admin/autor/AutorWS"})
+@WebServlet(name = "LivroWS", urlPatterns = {"/admin/livro/LivroWS"})
 public class LivroWS extends HttpServlet {
-    private AutorDAO dao;
-    private Autor obj;
+    private LivroDAO dao;
+    private Livro obj;
     private String pagina;
     private String acao;
      
@@ -34,12 +42,12 @@ public class LivroWS extends HttpServlet {
             throws ServletException, IOException {
         
         acao = request.getParameter("acao");
-        List<Autor> lista = null;
+        List<Livro> lista = null;
         String id;
         switch(String.valueOf(acao)){
             case "del":
                 id = request.getParameter("id");
-                dao = new AutorDAO();
+                dao = new LivroDAO();
                 pagina = "index.jsp";
                 obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
                 Boolean deucerto = dao.excluir(obj);
@@ -54,13 +62,13 @@ public class LivroWS extends HttpServlet {
                 break;
             case "edit":
                 id = request.getParameter("id");
-                dao = new AutorDAO();
-                Autor obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
+                dao = new LivroDAO();
+                Livro obj = dao.buscarPorChavePrimaria(Long.parseLong(id));
                 request.setAttribute("obj", obj);
                 pagina = "edita.jsp";
                 break;
             default:
-                dao = new AutorDAO();
+                dao = new LivroDAO();
                 if (request.getParameter("filtro") != null) {
                     try {
                         lista = dao.listar(request.getParameter("filtro"));
@@ -92,27 +100,52 @@ public class LivroWS extends HttpServlet {
                 msg = "Campos obrigatórios não informados";
             }
             else{
-                dao = new AutorDAO();
-                obj = new Autor();
+                dao = new LivroDAO();
+                obj = new Livro();
                 //preencho o objeto com o que vem do post
                 
                 Boolean deucerto;
+                
+                int Generos = Integer.parseInt(request.getParameter("txtGenero"));
+                int Editoras = Integer.parseInt(request.getParameter("txtUsuario"));
+                int Classificacoes = Integer.parseInt(request.getParameter("txtClassificacao"));
+                int Autores = Integer.parseInt(request.getParameter("txtAutor"));
+                
+                Genero genero;
+                GeneroDAO generodao = new GeneroDAO();
+                genero = generodao.buscarPorChavePrimaria(Generos);
+                
+                Editora editora;
+                EditoraDAO editoradao = new EditoraDAO();
+                editora = editoradao.buscarPorChavePrimaria(Editoras);
+                
+                Classificacao classificacao;
+                ClassificacaoDAO classificacaodao = new ClassificacaoDAO();
+                classificacao = classificacaodao.buscarPorChavePrimaria(Classificacoes);
+                
+                Autor autor;
+                AutorDAO autordao = new AutorDAO();
+                autor = autordao.buscarPorChavePrimaria(Autores);
                 
                 //se veio com a chave primaria então tem q alterar
                 if(request.getParameter("txtId")!= null){
                     obj = dao.buscarPorChavePrimaria(Long.parseLong(request.getParameter("txtId")));
                     obj.setNome(request.getParameter("txtNome"));
-                    obj.setIdade(Integer.parseInt(request.getParameter("txtIdade")));
-                    obj.setCidade(request.getParameter("txtCidade"));
-                    obj.setEndFoto(request.getParameter("txtFoto"));
+                    obj.setAutor(autor);
+                    obj.setClassificacao(classificacao);
+                    obj.setEditora(editora);
+                    obj.setGenero(genero);
+                    
                     deucerto = dao.alterar(obj);
                     pagina="edita.jsp";
                 }
                 else{
                     obj.setNome(request.getParameter("txtNome"));
-                    obj.setIdade(Integer.parseInt(request.getParameter("txtIdade")));
-                    obj.setCidade(request.getParameter("txtCidade"));
-                    obj.setEndFoto(request.getParameter("txtFoto"));
+                    obj.setAutor(autor);
+                    obj.setClassificacao(classificacao);
+                    obj.setEditora(editora);
+                    obj.setGenero(genero);
+                    
                     deucerto = dao.incluir(obj);
                     pagina="add.jsp";   
                 }

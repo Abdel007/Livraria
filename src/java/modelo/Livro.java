@@ -28,15 +28,14 @@ public class Livro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    String nome;
-    Autor autor;
+    private String nome;
+    private Autor autor;
     @ManyToOne
-    Genero genero;
+    private Genero genero;
     @ManyToOne
-    Editora editora;
+    private Editora editora;
     @ManyToOne
-    Classificacao classificacao;
+    private Classificacao classificacao;
 
     public Long getId() {
         return id;
@@ -69,6 +68,46 @@ public class Livro implements Serializable {
     @Override
     public String toString() {
         return "modelo.Livro[ id=" + id + " ]";
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public Classificacao getClassificacao() {
+        return classificacao;
+    }
+
+    public void setClassificacao(Classificacao classificacao) {
+        this.classificacao = classificacao;
     }
     
 }
