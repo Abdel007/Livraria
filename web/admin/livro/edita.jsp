@@ -2,7 +2,7 @@
 <%@include file="../cabecalho.jsp" %>
 <div class="card">
     <div class="card-header">
-        <h5 class="title">Adiciona Livro</h5>
+        <h5 class="title">Editar Livro</h5>
     </div>
     <div class="card-body">
         <!--MODIFICAR PARA ADD-->
@@ -27,22 +27,52 @@
             <div class="row">
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
-                        <label>Idade</label>
-                        <input type="number" name="txtIdade" required class="form-control" placeholder="Idade" value="${obj.idade}">
+                        <label>Autor</label>
+                        <select name="txtAutor">
+                        
+                              <c:forEach items="${autor}" var="objAutor">
+                                <option value="${objAutor.id}" ${obj.autor.equals(objAutor)?'selected':''}> ${objAutor.nome}</option>
+                            </c:forEach>
+                        </select><br><br>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-5 pr-md-1">
                     <div class="form-group">
-                        <label>Cidade</label>
-                        <input type="text" name="txtCidade" required class="form-control" placeholder="Cidade" value="${obj.cidade}">
+                        <label>Genero</label>
+                        <select name="txtGenero">
+                        
+                              <c:forEach items="${genero}" var="objGenero">
+                                <option value="${objGenero.id}" ${obj.genero.equals(objGenero)?'selected':''}> ${objGenero.genero}</option>
+                            </c:forEach>
+                        </select><br><br>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <div class="form-group-file">
-                        <label for="file">Foto</label>
-                        <input type="file" id="file" name="txtFoto" required class="form-control form-control-file" value="./../../arquivos/${obj.endFoto}">
+        </div>
+            <div class="row">
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Editora</label>
+                        <select name="txtEditora">
+                        
+                              <c:forEach items="${editora}" var="objEditora">
+                                <option value="${objEditora.id}" ${obj.editora.equals(objEditora)?'selected':''}> ${objEditora.nome}</option>
+                            </c:forEach>
+                        </select><br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 pr-md-1">
+                    <div class="form-group">
+                        <label>Classificacao</label>
+                        <select name="txtClassificacao">
+                        
+                              <c:forEach items="${classificacao}" var="objClassificacao">
+                                <option value="${objClassificacao.id}" ${obj.classificacao.equals(objClassificacao)?'selected':''}> ${objClassificacao.tipoClassificacao}</option>
+                            </c:forEach>
+                        </select><br><br>
                     </div>
                 </div>
             </div>

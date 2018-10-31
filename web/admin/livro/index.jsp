@@ -19,13 +19,16 @@
                     Nome
                 </th>
                 <th>
-                    Idade
+                    Autor
                 </th>
                 <th>
-                    Cidade
+                    Genero
                 </th>
                 <th>
-                    Foto
+                    Editora
+                </th>
+                <th>
+                    Classificação
                 </th>
                 <th>
                     Edita
@@ -40,9 +43,11 @@
                         <tr>
                             <td>${obj.id}</td>
                             <td>${obj.nome}</td>
-                            <td>${obj.idade}</td>
-                            <td>${obj.cidade}</td>
-                            <td><img src="../../arquivos/${obj.endFoto}" height="42" width="42"></td>
+                            <td>${obj.autor}</td>
+                            <td>${obj.genero}</td>
+                            <td>${obj.editora}</td>
+                            <td>${obj.classificacao}</td>
+                            
                             <td>
                                 <a class="btn btn-info btn-fab btn-icon btn-round" href="LivroWS?acao=edit&id=${obj.id}">
                                     <i class="tim-icons icon-pencil"></i>

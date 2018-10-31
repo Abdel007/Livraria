@@ -89,6 +89,38 @@ public class LivroWS extends HttpServlet {
         destino.forward(request, response);
         
     }
+    
+    public List<Genero> listarGeneros(){
+                
+            GeneroDAO dao = new GeneroDAO();
+             List<Genero> lista = dao.listar();
+            dao.fecharConexao();
+            return lista;
+            }
+    
+    public List<Autor> listarAutores(){
+                
+            AutorDAO dao = new AutorDAO();
+             List<Autor> lista = dao.listar();
+            dao.fecharConexao();
+            return lista;
+            }
+    
+    public List<Editora> listarEditoras(){
+                
+            EditoraDAO dao = new EditoraDAO();
+             List<Editora> lista = dao.listar();
+            dao.fecharConexao();
+            return lista;
+            }
+    
+    public List<Classificacao> listarClassificacoes(){
+                
+            ClassificacaoDAO dao = new ClassificacaoDAO();
+             List<Classificacao> lista = dao.listar();
+            dao.fecharConexao();
+            return lista;
+            }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -106,10 +138,10 @@ public class LivroWS extends HttpServlet {
                 
                 Boolean deucerto;
                 
-                int Generos = Integer.parseInt(request.getParameter("txtGenero"));
-                int Editoras = Integer.parseInt(request.getParameter("txtUsuario"));
-                int Classificacoes = Integer.parseInt(request.getParameter("txtClassificacao"));
-                int Autores = Integer.parseInt(request.getParameter("txtAutor"));
+                Long Generos = Long.parseLong(request.getParameter("txtGenero"));
+                Long Editoras = Long.parseLong(request.getParameter("txtUsuario"));
+                Long Classificacoes = Long.parseLong(request.getParameter("txtClassificacao"));
+                Long Autores = Long.parseLong(request.getParameter("txtAutor"));
                 
                 Genero genero;
                 GeneroDAO generodao = new GeneroDAO();
